@@ -8,7 +8,7 @@ from revscoring.languages import english
 
 from wiki_edit_util import *
 import gensim.models.keyedvectors as word2vec
-
+#Deprecation solved in KeyedVectors
 model = word2vec.KeyedVectors.load_word2vec_format('./wiki_revision_trained_embedding.bin', binary=True)
 
 # revision_id = 687120365
@@ -311,6 +311,8 @@ def generate_features(rev_ids):
 			feats, text_feats = [], []
 			values = api_extractor.extract(int(revision_id), features)
 			zip_feat_values = zip(features, values)
+			#This way the revision id appears in the training/test set
+			feats.append(revision_id)
 			for f, v in zip_feat_values:
 				feats.append(v)
 			
@@ -336,6 +338,8 @@ def generate_features(rev_ids):
 				ans_feats_values.append(-1.0)
 			else:
 				ans_feats_values.append(float(v))
+		#To avoid having the ID of the revision with float format
+		ans_feats_values[0] = int(ans_feats_values[0])
 		X.append(ans_feats_values)
 		
 		y = transform_labels(labels, MAX_NUM)

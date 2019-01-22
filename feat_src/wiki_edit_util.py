@@ -63,7 +63,8 @@ def stem_words(segments):
 		tokens.extend(ss)
 	ans = set()
 	for t in tokens:
-		stem_t = PorterStemmer().stem_word(t)
+                #This was stem_word instead of .stem
+		stem_t = PorterStemmer().stem(t)
 		ans.add(stem_t)
 	return ans 
 	

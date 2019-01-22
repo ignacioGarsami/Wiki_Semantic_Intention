@@ -35,9 +35,8 @@ if __name__ == '__main__':
 		labels = [int(v) for v in label_text.split(',')]
 		
 		if rid not in revision_labels:
-			revision_labels[rid] = labels
-	
-	# construct features 
+			revision_labels[rid] = labels	# construct features
+			
 	#if not os.path.exists('X_5000.pk'):
 	X, Y = generate_features(revision_labels)
 	# X = np.matrix(X, dtype=np.float64)
@@ -66,3 +65,4 @@ if __name__ == '__main__':
 	accuracy = cross_val_score(lr, X, Y, scoring='accuracy', cv=3)
 	print('10 cross validation accuracy = ' + str(sum(accuracy)/len(accuracy)))
 	'''
+	

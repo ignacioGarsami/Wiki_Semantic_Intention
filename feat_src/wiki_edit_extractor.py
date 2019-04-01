@@ -13,7 +13,8 @@ model = word2vec.KeyedVectors.load_word2vec_format('./wiki_revision_trained_embe
 
 # revision_id = 687120365
 
-session = Session("https://en.wikipedia.org/w/api.php", user_agent="test")
+session = Session("https://es.wikipedia.org/w/api.php", user_agent="test")
+#session = Session("https://cocktails.wikia.com/api.php", user_agent="test", verbose = True)
 api_extractor = api.Extractor(session)
 
 MAX_NUM = 14
